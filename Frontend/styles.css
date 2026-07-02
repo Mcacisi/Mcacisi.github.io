@@ -1,0 +1,277 @@
+ 
+    :root {
+      --bg:        #0a0e17;
+      --surface:   #111827;
+      --border:    #1e2d40;
+      --neon:      #00f5a0;
+      --neon-dim:  #00f5a022;
+      --neon-mid:  #00f5a055;
+      --text:      #e2e8f0;
+      --muted:     #64748b;
+      --accent2:   #3b82f6;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--neon-mid); border-radius: 3px; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1rem 2rem;
+      background: rgba(10,14,23,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--neon);
+      font-size: 1rem;
+      letter-spacing: 0.05em;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--neon); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 8rem 2rem 4rem;
+      max-width: 860px; margin: 0 auto;
+      position: relative;
+    }
+    .hero-tag {
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--neon);
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+    }
+    .hero-tag::before { content: '> '; opacity: 0.5; }
+    h1 {
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+    }
+    h1 span { color: var(--neon); }
+    .hero-role {
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--muted);
+      font-size: 1rem;
+      margin-bottom: 1.8rem;
+    }
+    .hero-bio {
+      color: #94a3b8;
+      font-size: 1.05rem;
+      max-width: 580px;
+      margin-bottom: 2.5rem;
+      line-height: 1.8;
+    }
+    .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      border-radius: 6px;
+      font-weight: 600; font-size: 0.9rem;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer; border: none;
+    }
+    .btn-primary {
+      background: var(--neon);
+      color: #0a0e17;
+    }
+    .btn-primary:hover { background: #00daa0; transform: translateY(-2px); box-shadow: 0 0 20px var(--neon-mid); }
+    .btn-outline {
+      background: transparent;
+      color: var(--neon);
+      border: 1px solid var(--neon-mid);
+    }
+    .btn-outline:hover { background: var(--neon-dim); transform: translateY(-2px); }
+
+    /* glow grid bg */
+    #hero::before {
+      content: '';
+      position: absolute; inset: 0; z-index: -1;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(ellipse 70% 60% at 20% 50%, black 0%, transparent 80%);
+      opacity: 0.4;
+    }
+
+    /* ── SECTIONS ── */
+    section {
+      max-width: 860px; margin: 0 auto;
+      padding: 5rem 2rem;
+      border-top: 1px solid var(--border);
+    }
+    .section-label {
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--neon);
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    h2 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 2.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    /* ── SKILLS ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 0.75rem;
+    }
+    .skill-chip {
+      display: flex; align-items: center; gap: 0.5rem;
+      padding: 0.6rem 1rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--text);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .skill-chip:hover {
+      border-color: var(--neon-mid);
+      box-shadow: 0 0 12px var(--neon-dim);
+    }
+    .skill-chip .dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--neon); flex-shrink: 0;
+    }
+
+    /* ── PROJECTS ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.2rem;
+    }
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem;
+      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+      display: flex; flex-direction: column; gap: 0.75rem;
+    }
+    .project-card:hover {
+      border-color: var(--neon-mid);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 32px rgba(0,245,160,0.08);
+    }
+    .project-icon {
+      font-size: 1.5rem;
+      width: 44px; height: 44px;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--neon-dim);
+      border-radius: 8px;
+    }
+    .project-card h3 { font-size: 1rem; font-weight: 700; }
+    .project-card p { font-size: 0.875rem; color: #94a3b8; line-height: 1.6; flex: 1; }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      padding: 0.2rem 0.5rem;
+      background: rgba(59,130,246,0.12);
+      color: #93c5fd;
+      border-radius: 4px;
+      border: 1px solid rgba(59,130,246,0.25);
+    }
+    .project-link {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      color: var(--neon); font-size: 0.8rem; text-decoration: none;
+      font-weight: 600; margin-top: 0.25rem;
+    }
+    .project-link:hover { text-decoration: underline; }
+
+    /* ── CONTACT ── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+    .contact-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+      display: flex; align-items: center; gap: 1rem;
+      text-decoration: none;
+      color: var(--text);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .contact-card:hover {
+      border-color: var(--neon-mid);
+      box-shadow: 0 0 16px var(--neon-dim);
+    }
+    .contact-icon {
+      font-size: 1.3rem;
+      width: 40px; height: 40px;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--neon-dim); border-radius: 8px; flex-shrink: 0;
+    }
+    .contact-label { font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; }
+    .contact-value { font-size: 0.875rem; font-weight: 600; margin-top: 0.1rem; }
+
+    /* ── EMAIL BORDER FIX ── */
+.contact-card.email-card {
+  border: 1.5px solid var(--neon-mid);
+  box-shadow: 0 0 10px var(--neon-dim);
+}
+.contact-card.email-card:hover {
+  border-color: var(--neon);
+  box-shadow: 0 0 22px rgba(0,245,160,0.2);
+}
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--muted);
+      font-size: 0.8rem;
+      border-top: 1px solid var(--border);
+      font-family: 'JetBrains Mono', monospace;
+    }
+    footer span { color: var(--neon); }
+
+    /* ── MOBILE ── */
+    @media (max-width: 600px) {
+      nav { padding: 1rem; }
+      .nav-links { gap: 1.2rem; }
+      h1 { font-size: 2.2rem; }
+      section { padding: 3.5rem 1.25rem; }
+    }
+  
